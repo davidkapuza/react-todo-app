@@ -1,0 +1,32 @@
+// Screen sizes
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+$screen-xxl: 1300px;
+$screen-full: 1400px;
+
+// Colors
+$primaryColor: #16161d;
+$secondaryColor: #ffff;
+$bgColor: #edeaea;
+$gray: #9d9d9d;
+
+// Button sizes
+$button-sm: 25px;
+$button-md: 30px;
+$button-lg: 40px;
+
+// Button colors
+$btn-colors: (
+  "black": $primaryColor,
+  "white": $secondaryColor,
+);
+
+$btn-sizes: (
+  large: (50px, 18px),
+  medium: (34px, 16px),
+  small: (25px, 14px)
+)
+
+

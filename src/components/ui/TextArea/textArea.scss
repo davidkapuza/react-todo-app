@@ -1,0 +1,22 @@
+@import '../../../sass/mixins';
+
+textarea {
+  font-family: 'Poppins', sans-serif;
+  border: 2px solid $gray;
+  border-radius: 20px;
+  height: 10em;
+  margin-bottom: 30px;
+  background: none;
+  padding-left: 15px;
+  color: $gray;
+  line-height: 22px;
+  overflow-wrap: break-word;
+  padding-top: 14px;
+  padding-right: 10px;
+  resize: none;
+  
+  &:focus {
+    color: $secondaryColor;
+    border: 2px solid $secondaryColor;
+  }
+}

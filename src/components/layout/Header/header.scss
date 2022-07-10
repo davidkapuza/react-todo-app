@@ -1,0 +1,13 @@
+@import '../../../sass/variables';
+
+
+.user-avatar {
+  position: absolute;
+  border: none;
+  left: 2.5em;
+  top: 2.5em;
+  
+  img {
+    width: 50px;
+  }
+}

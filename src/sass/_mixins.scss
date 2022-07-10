@@ -1,0 +1,95 @@
+@import "./variables";
+@import "./functions";
+
+// Breakpoints
+@mixin smMinBreakPoint {
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+@mixin mdMinBreakPoint {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin lgMinBreakPoint {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin customMinBreakPoint($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin customMaxBreakPoint($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+// Set backgorund & content color
+@mixin set-background($color) {
+  background-color: $color;
+  color: set-content-color($color);
+  fill: set-content-color($color);
+}
+
+// Button size
+@mixin get-size($height, $font) {
+  $padding: floor(calc($font / 1.2));
+  padding: 0 $padding;
+  height: $height;
+  font-size: $font;
+}
+
+@mixin btn-lg {
+  @include get_size(50px, 20px);
+}
+
+@mixin btn-md {
+  @include get_size(44px, 18px);
+}
+
+@mixin btn-sm {
+  @include get_size(25px, 14px);
+}
+
+//Button color
+@mixin btn-style($style, $color) {
+  .btn-#{$style} {
+    @include set-background($color);
+    border: 2px solid $color;
+  }
+  .border-#{$style} {
+    color: $color;
+    fill: $color;
+    border: 2px solid $color;
+    background: none;
+  }
+
+}
+
+@each $name, $color in $btn-colors {
+  @include btn-style($name, map-get($btn-colors, $name));
+}
+
+.btn-lg {
+
+    @include btn_lg;
+  }
+  
+  .btn-md {
+  
+    @include btn_md;
+  }
+  
+  .btn-sm {
+    
+    @include btn_sm;
+  }
+

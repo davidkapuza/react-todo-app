@@ -1,23 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {
+  AppWrapper,
+  TasksList,
+  PrimaryButton,
+  Header,
+  TasksForm,
+} from "components";
+import "./sass/_global.scss";
+import { useState, useEffect } from "react";
+import { ArrowIcon } from "assets";
 function App() {
+  const [modal, setModal] = useState(false);
+
+  const [tasks, setTasks] = useState(
+    () => JSON.parse(window.localStorage.getItem("tasks")) || []
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const createTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    setModal(false);
+  };
+
+  const removeTask = (task) => {
+    setTasks(tasks.filter((p) => p.id !== task.id));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <AppWrapper>
+        <Header></Header>
+
+        <TasksList
+          tasks={tasks}
+          visible={modal}
+          setVisible={setModal}
+          remove={removeTask}
+        />
+        {modal ? (
+          <TasksForm
+            className="tasksForm"
+            create={createTask}
+            setVisible={setModal}
+          />
+        ) : null}
+        <PrimaryButton
+          size="btn-sm"
+          color="border-black"
+          onClick={() => setModal(true)}
+          icon={
+            <ArrowIcon/>
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <h3>create task</h3>
+        </PrimaryButton>
+      </AppWrapper>
     </div>
   );
 }
