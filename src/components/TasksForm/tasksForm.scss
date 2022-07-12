@@ -16,7 +16,11 @@ form {
     width: 90%;
   }
 
- 
+  textarea {
+    height: 10em;
+    padding-bottom: 94px;
+    overflow-wrap: break-word;
+  }
   .formButtons {
     display: inline-grid;
     grid-template-rows: 1fr;
@@ -30,5 +34,13 @@ form {
       margin-top: 1.2em;
     }
   }
+  .error-message {
+    visibility: hidden;
+    text-align: left;
+    color: $red;
+    margin-bottom: 5px;
+  }
+
+  
 }
 

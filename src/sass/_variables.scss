@@ -11,6 +11,7 @@ $primaryColor: #16161d;
 $secondaryColor: #ffff;
 $bgColor: #edeaea;
 $gray: #9d9d9d;
+$red: #df4837;
 
 // Button sizes
 $button-sm: 25px;
@@ -23,10 +24,14 @@ $btn-colors: (
   "white": $secondaryColor,
 );
 
+// $large: (size: 50px, font: 18px);
+// $medium: (size: 34px, font: 16px);
+// $small: (size: 25px, font: 14px);
+
 $btn-sizes: (
-  large: (50px, 18px),
-  medium: (34px, 16px),
-  small: (25px, 14px)
-)
+  "large": (size: 50px, font: 18px),
+  "medium": (size: 34px, font: 16px),
+  "small": (size: 25px, font: 14px)
+);
 
 

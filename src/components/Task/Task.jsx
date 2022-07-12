@@ -2,6 +2,7 @@ import { SecondaryButton, IconButton } from "components";
 import { DoneIcon, RemoveIcon } from "assets";
 import "./task.scss";
 import "../../sass/_global.scss";
+import React from "react";
 
 function Task({ task, remove }) {
   return (
@@ -9,7 +10,7 @@ function Task({ task, remove }) {
       <li>
         <span className="btns-wrapper">
           <SecondaryButton
-            size="btn-sm"
+            size="btn-small"
             color="btn-black"
             onClick={() => remove(task)}
             icon={<DoneIcon />}
@@ -17,14 +18,14 @@ function Task({ task, remove }) {
             Complite
           </SecondaryButton>
           <IconButton
-            size="btn-sm"
+            size="btn-small"
             color="btn-white"
             onClick={() => remove(task)}
             icon={<RemoveIcon />}
           />
         </span>
         <h4>{task.title}</h4>
-        <p>{task.body}</p>
+        <p>{task.description}</p>
       </li>
     </div>
   );

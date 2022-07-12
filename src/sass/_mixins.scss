@@ -47,18 +47,6 @@
   font-size: $font;
 }
 
-@mixin btn-lg {
-  @include get_size(50px, 20px);
-}
-
-@mixin btn-md {
-  @include get_size(44px, 18px);
-}
-
-@mixin btn-sm {
-  @include get_size(25px, 14px);
-}
-
 //Button color
 @mixin btn-style($style, $color) {
   .btn-#{$style} {
@@ -71,25 +59,20 @@
     border: 2px solid $color;
     background: none;
   }
-
 }
+
+@mixin btn-size($name, $sizes) {
+  .btn-#{$name} {
+    @include get-size(map-get(map-get($btn-sizes, $name), size), map-get(map-get($btn-sizes, $name), font))
+  }
+}
+
 
 @each $name, $color in $btn-colors {
   @include btn-style($name, map-get($btn-colors, $name));
 }
 
-.btn-lg {
-
-    @include btn_lg;
-  }
-  
-  .btn-md {
-  
-    @include btn_md;
-  }
-  
-  .btn-sm {
-    
-    @include btn_sm;
-  }
+@each $name, $sizes in $btn-sizes {
+  @include btn-size($name, map-get($btn-sizes, $name))
+}
 

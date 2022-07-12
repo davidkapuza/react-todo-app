@@ -1,52 +1,109 @@
-import { useState } from "react";
 import { PrimaryButton, Input, TextArea } from "components";
 import { DoneIcon, CancelIcon } from "assets";
-import "./tasksForm.scss";
-import { v4 as uuid } from "uuid";
 import { useFormik } from "formik";
+import "./tasksForm.scss";
+const _ = require("lodash");
 
 function TasksForm({ create, setVisible }) {
-  const [task, setTask] = useState([]);
-  const unique_id = uuid();
-  const small_id = unique_id.slice(0, 8);
+  const unique_id = _.uniqueId("task_");
 
-  const addNewTask = (e) => {
-    e.preventDefault();
+  const { handleSubmit, handleChange, handleBlur, touched, values, errors } =
+    useFormik({
+      initialValues: {
+        title: "",
+        description: "",
+      },
+      validate,
+      onSubmit: (values) => {
+        addNewTask(values);
+      },
+    });
+
+  function validate(values) {
+    const errors = {};
+    if (!values.title) {
+      errors.title = "Required";
+    }
+
+    if (!values.description) {
+      errors.description = "Required";
+    }
+    return errors;
+  }
+
+  const addNewTask = (values) => {
+    console.log(unique_id)
     const newTask = {
-      ...task,
-      id: small_id,
+      ...values,
+      id: unique_id,
     };
     create(newTask);
   };
 
+  function getErrorStyles(errors, fieldName, callback) {
+    if (touched[fieldName] && errors[fieldName]) {
+      return callback();
+    }
+  }
   return (
-    <form name="task-constructor" onSubmit={addNewTask}>
+    <form name="task-constructor" onSubmit={handleSubmit}>
+      <h5
+        className="error-message"
+        style={getErrorStyles(errors, "title", () => ({
+          visibility: "visible",
+        }))}
+      >
+        Title is required
+      </h5>
+
       <Input
-        onChange={(e) => setTask({ ...task, title: e.target.value })}
-        value={task.title || ""}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.title}
         placeholder="Title"
         type="text"
+        name="title"
+        style={getErrorStyles(errors, "title", () => ({
+          border: "2px solid #df4837",
+        }))}
       />
+
+      <h5
+        className="error-message"
+        style={getErrorStyles(errors, "description", () => ({
+          visibility: "visible",
+        }))}
+      >
+        Description is required
+      </h5>
+
       <TextArea
-        onChange={(e) => setTask({ ...task, body: e.target.value })}
-        value={task.body || ""}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.description}
         placeholder="Description"
         type="text"
+        name="description"
+        style={getErrorStyles(errors, "description", () => ({
+          border: "2px solid #df4837",
+        }))}
       />
+
       <div className="formButtons">
         <PrimaryButton
-          size="btn-sm"
+          type="button"
+          size="btn-small"
           color="btn-white"
           onClick={() => setVisible(false)}
-          icon={<CancelIcon/>}
+          icon={<CancelIcon />}
         >
           Cancel
         </PrimaryButton>
         <PrimaryButton
-          size="btn-sm"
+          type="submit"
+          size="btn-small"
           color="border-white"
-          onClick={addNewTask}
-          icon={<DoneIcon/>}
+          icon={<DoneIcon />}
         >
           Create
         </PrimaryButton>

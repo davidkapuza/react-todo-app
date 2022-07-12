@@ -10,7 +10,6 @@ import { useState, useEffect } from "react";
 import { ArrowIcon } from "assets";
 function App() {
   const [modal, setModal] = useState(false);
-
   const [tasks, setTasks] = useState(
     () => JSON.parse(window.localStorage.getItem("tasks")) || []
   );
@@ -47,7 +46,7 @@ function App() {
           />
         ) : null}
         <PrimaryButton
-          size="btn-sm"
+          size="btn-small"
           color="border-black"
           onClick={() => setModal(true)}
           icon={

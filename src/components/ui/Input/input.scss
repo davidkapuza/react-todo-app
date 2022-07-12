@@ -4,7 +4,7 @@ input {
   border: 2px solid $gray;
   border-radius: 20px;
   height: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   background: none;
   padding-left: 15px;
   color: $gray;
@@ -17,5 +17,6 @@ input {
   &:focus {
     color: $secondaryColor;
     border: 2px solid $secondaryColor;
+    outline: none;
   }
 }

@@ -1,6 +1,6 @@
 import './input.scss'
 
-function Input(props) {
+function Input({...props}) {
   return <input {...props}></input>;
 }
 
