@@ -11,7 +11,7 @@ function TasksForm({ create, setVisible }) {
     useFormik({
       initialValues: {
         title: "",
-        description: "",
+        body: "",
       },
       validate,
       onSubmit: (values) => {
@@ -25,14 +25,13 @@ function TasksForm({ create, setVisible }) {
       errors.title = "Required";
     }
 
-    if (!values.description) {
-      errors.description = "Required";
+    if (!values.body) {
+      errors.body = "Required";
     }
     return errors;
   }
 
   const addNewTask = (values) => {
-    console.log(unique_id)
     const newTask = {
       ...values,
       id: unique_id,
@@ -70,7 +69,7 @@ function TasksForm({ create, setVisible }) {
 
       <h5
         className="error-message"
-        style={getErrorStyles(errors, "description", () => ({
+        style={getErrorStyles(errors, "body", () => ({
           visibility: "visible",
         }))}
       >
@@ -80,11 +79,11 @@ function TasksForm({ create, setVisible }) {
       <TextArea
         onChange={handleChange}
         onBlur={handleBlur}
-        value={values.description}
+        value={values.body}
         placeholder="Description"
         type="text"
-        name="description"
-        style={getErrorStyles(errors, "description", () => ({
+        name="body"
+        style={getErrorStyles(errors, "body", () => ({
           border: "2px solid #df4837",
         }))}
       />

@@ -25,7 +25,7 @@ function Task({ task, remove }) {
           />
         </span>
         <h4>{task.title}</h4>
-        <p>{task.description}</p>
+        <p>{task.body}</p>
       </li>
     </div>
   );

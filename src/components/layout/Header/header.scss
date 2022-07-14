@@ -1,13 +1,20 @@
 @import '../../../sass/variables';
 
-
-.user-avatar {
-  position: absolute;
-  border: none;
-  left: 2.5em;
-  top: 2.5em;
-  
-  img {
-    width: 50px;
+header {
+  display: flex;
+  align-items: center;
+  height: 9em;
+  width: 100%;
+  padding: 0 5% 0 5%;
+  flex-direction: row;
+  justify-content: space-between;
+  .user-avatar {
+    
+    img {
+      width: 50px;
+    }
+  }
+  button {
+    margin: 0;
   }
 }

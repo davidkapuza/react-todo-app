@@ -9,11 +9,3 @@
   }
 }
 
-@function if-transparent($name, $color) {
-  @if($name == transparent) {
-    @return $primaryColor;
-  } @else {
-    @return $color;
-  }
-}
-

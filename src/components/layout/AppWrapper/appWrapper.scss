@@ -1,23 +1,11 @@
 @import '../../../sass/animations';
 
-.appWrapper {
+.app-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0 auto;
   -webkit-animation: turn-on-overflow 0.1s ease 1.5s both;
   animation: turn-on-overflow 0.1s ease 1.5s both;
   justify-items: center;
-  padding: 8em 10px 20px 10px;
-
-
-  .userIcon {
-    text-align: left;
-    border: none;
-    background-size: contain;
-    justify-self: left;
-    padding-left: 1.5em;
-    margin: 2em 0 2em;
-    height: 55px;
-  }
+  padding: 20px 10px 20px 10px;
 
 }

@@ -1,9 +1,9 @@
 import './appWrapper.scss'
 
 function AppWrapper(props) {
-  return (<main className="appWrapper">
+  return <main className="app-wrapper">
     {props.children}
-  </main> );
+  </main>;
 }
 
 export default AppWrapper;
