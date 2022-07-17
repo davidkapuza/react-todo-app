@@ -1,5 +1,5 @@
 import { noTasksImg } from "assets";
-import "./noTasks.scss";
+import "./fallback.scss";
 import "../../../sass/_animations.scss";
 
 function NoTasks() {

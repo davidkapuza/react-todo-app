@@ -2,11 +2,12 @@ import { SecondaryButton, IconButton } from "components";
 import { DoneIcon, RemoveIcon } from "assets";
 import "./task.scss";
 import "../../sass/_global.scss";
-import React from "react";
+import React, {memo} from "react";
+import { forwardRef } from "react";
 
-function Task({ task, remove }) {
+const Task = memo(forwardRef(({ task, remove }, ref) => {
   return (
-    <div className="task">
+    <div className="task" ref={ref}>
       <li>
         <span className="btns-wrapper">
           <SecondaryButton
@@ -29,6 +30,6 @@ function Task({ task, remove }) {
       </li>
     </div>
   );
-}
+}))
 
 export default Task;
