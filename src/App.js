@@ -7,7 +7,7 @@ import {
   Fallback,
 } from "components";
 import "./sass/_global.scss";
-import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ArrowIcon } from "assets";
 import TasksService from "api/tasksService";
 import "./sass/_global.scss";
@@ -18,7 +18,7 @@ function App() {
   const [modal, setModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [hasMore, setHasMore] = useState(false);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(20);
   const [page, setPage] = useState(1);
 
   const [fetchTasks, isTasksLoading, taskError] = useFetching(async () => {
@@ -43,9 +43,7 @@ function App() {
   );
 
   useEffect(() => {
-    setTimeout(() => {
       fetchTasks();
-    }, 1000);
   }, [page]);
 
   const createTask = (newTask) => {
@@ -71,17 +69,15 @@ function App() {
           </Header>
           {modal ? <TasksForm create={createTask} setVisible={setModal} /> : null}
           {taskError && <h1>Error: {taskError}</h1>}
-          {isTasksLoading ? (
-            <Loader />
-          ) : tasks.length || modal || taskError ? (
+          {taskError || (
             <TasksList
               tasks={tasks}
               remove={removeTask}
               lastTaskRef={lastTaskRef}
             />
-          ) : (
-            <Fallback />
           )}
+          {!tasks.length && !modal && !isTasksLoading && <Fallback />}
+          { isTasksLoading && <Loader /> }
         </AppWrapper>
       </div>
     );

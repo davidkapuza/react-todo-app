@@ -1,10 +1,11 @@
 import { PrimaryButton, Input, TextArea } from "components";
 import { DoneIcon, CancelIcon } from "assets";
 import { useFormik } from "formik";
+import { memo } from 'react';
 import "./tasksForm.scss";
 const _ = require("lodash");
 
-function TasksForm({ create, setVisible }) {
+const TasksForm = memo(({ create, setVisible }) => {
   const unique_id = _.uniqueId("task_");
 
   const { handleSubmit, handleChange, handleBlur, touched, values, errors } =
@@ -109,6 +110,6 @@ function TasksForm({ create, setVisible }) {
       </div>
     </form>
   );
-}
+})
 
 export default TasksForm;

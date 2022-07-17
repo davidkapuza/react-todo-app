@@ -1,6 +1,5 @@
 import { Task } from "components";
 import React, {memo} from "react";
-import { useMemo } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "../../sass/_animations.scss";
 import "./tasksList.scss";
@@ -10,8 +9,7 @@ const TasksList = memo(({ tasks, remove, lastTaskRef }) => {
       <ul>
         <TransitionGroup>
           {tasks.map((task, index) => {
-            console.log(task.id)
-            if (tasks.length === index + 1) {
+            if (tasks.length - 5 === index + 1) {
               return <CSSTransition  key={task.id} timeout={500} classNames="task">
                 <Task ref={ lastTaskRef } remove={remove} task={task} />
               </CSSTransition>
@@ -20,7 +18,6 @@ const TasksList = memo(({ tasks, remove, lastTaskRef }) => {
               <Task remove={remove} task={task} />
             </CSSTransition>
             }
-            
           })}
         </TransitionGroup>
       </ul>
